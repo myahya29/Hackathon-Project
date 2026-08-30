@@ -68,11 +68,10 @@ export default function Login() {
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="you@example.com"
-                className={`w-full rounded-lg border py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 ${
-                  errors.email
+                className={`w-full rounded-lg border py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 ${errors.email
                     ? 'border-rose-400 focus:border-rose-400 focus:ring-rose-200'
                     : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
-                }`}
+                  }`}
               />
             </div>
             {errors.email && <p className="mt-1 text-xs text-rose-600">{errors.email}</p>}
@@ -92,11 +91,10 @@ export default function Login() {
                 value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
                 placeholder="••••••••"
-                className={`w-full rounded-lg border py-2.5 pl-10 pr-10 text-sm focus:outline-none focus:ring-2 ${
-                  errors.password
+                className={`w-full rounded-lg border py-2.5 pl-10 pr-10 text-sm focus:outline-none focus:ring-2 ${errors.password
                     ? 'border-rose-400 focus:border-rose-400 focus:ring-rose-200'
                     : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
-                }`}
+                  }`}
               />
               <button
                 type="button"

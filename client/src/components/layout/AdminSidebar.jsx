@@ -19,16 +19,16 @@ export default function AdminSidebar({ mobileOpen, onClose }) {
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-gray-100 bg-white transition-transform duration-200 lg:static lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-gray-100 bg-white transition-transform duration-200 dark:border-slate-800 dark:bg-slate-900 lg:static lg:translate-x-0 ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex items-center justify-between px-5 py-5">
-          <span className="flex items-center gap-2 text-lg font-bold text-gray-900">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white">A</span>
+          <span className="flex items-center gap-2 text-lg font-bold text-gray-900 dark:text-white">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-600 text-white">A</span>
             Admin
           </span>
-          <button className="text-gray-400 lg:hidden" onClick={onClose} aria-label="Close sidebar">
+          <button className="text-gray-400 hover:text-gray-600 dark:text-slate-400 dark:hover:text-white lg:hidden" onClick={onClose} aria-label="Close sidebar">
             <X size={20} />
           </button>
         </div>
@@ -43,8 +43,8 @@ export default function AdminSidebar({ mobileOpen, onClose }) {
               className={({ isActive }) =>
                 `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
                   isActive
-                    ? 'bg-indigo-50 text-indigo-700'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                    ? 'bg-violet-50 text-violet-700 dark:bg-violet-500/10 dark:text-violet-300'
+                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-slate-400 dark:hover:bg-slate-800/60 dark:hover:text-slate-200'
                 }`
               }
             >
@@ -54,7 +54,7 @@ export default function AdminSidebar({ mobileOpen, onClose }) {
           ))}
         </nav>
 
-        <div className="border-t border-gray-100 p-4 text-xs text-gray-400">
+        <div className="border-t border-gray-100 p-4 text-xs text-gray-400 dark:border-slate-800 dark:text-slate-500">
           Admin console v1.0
         </div>
       </aside>
