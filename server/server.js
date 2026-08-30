@@ -14,6 +14,7 @@ const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const complaintRoutes = require("./routes/complaintRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 // Connect to MongoDB
@@ -50,6 +51,7 @@ app.get("/api/health", (req, res) => {
 // ---------- Routes ----------
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/complaints", complaintRoutes);
 
 // ---------- Error handling (must be last) ----------
 app.use(notFound);

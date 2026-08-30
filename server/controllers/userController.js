@@ -67,9 +67,9 @@ const updateUser = asyncHandler(async (req, res) => {
   if (email !== undefined) user.email = email;
   if (avatar !== undefined) user.avatar = avatar;
   if (role !== undefined) {
-    if (!["user", "admin"].includes(role)) {
+    if (!["citizen", "officer"].includes(role)) {
       res.status(400);
-      throw new Error("Role must be either 'user' or 'admin'");
+      throw new Error("Role must be either 'citizen' or 'officer'");
     }
     user.role = role;
   }

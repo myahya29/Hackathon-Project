@@ -32,7 +32,7 @@ const signup = asyncHandler(async (req, res) => {
     throw new Error("A user with this email already exists");
   }
 
-  const user = await User.create({ name, email, password });
+  const user = await User.create({ name, email, password, role: "citizen" });
 
   const token = generateToken(user._id, user.role);
 
