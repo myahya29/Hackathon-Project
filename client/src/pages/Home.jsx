@@ -9,13 +9,15 @@ export default function Home() {
     <div className="bg-white min-h-screen flex flex-col justify-between font-sans">
       {/* HERO SECTION */}
       <section className="mx-auto flex max-w-4xl flex-col items-center px-4 py-16 text-center sm:px-6">
-        <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800 uppercase tracking-wide">
-          <Sparkles size={14} className="text-emerald-600" /> CivicPulse Redressal Portal
-        </span>
+        <div className="mb-4 flex flex-col items-center">
+          <img src="/logo.png" alt="Citizen Complaint Portal Logo" className="h-24 w-24 sm:h-28 sm:w-28 object-contain mb-3 drop-shadow-lg" />
+          <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-4 py-1 text-xs font-extrabold text-emerald-800 uppercase tracking-wide">
+            Official Municipal Grievance Portal
+          </span>
+        </div>
 
-        <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 leading-tight">
-          Citizen Complaint & <br className="hidden sm:block" />
-          <span className="text-emerald-600">Grievance Redressal Portal</span>
+        <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 leading-tight">
+          Citizen Complaint Portal
         </h1>
 
         <p className="mt-4 max-w-xl text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">

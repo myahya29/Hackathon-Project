@@ -48,9 +48,7 @@ export default function Signup() {
     <div className="flex min-h-[calc(100vh-140px)] items-center justify-center bg-white px-4 py-10">
       <div className="sq-card w-full max-w-sm p-6 border border-slate-200">
         <div className="mb-5 text-center space-y-1">
-          <div className="mx-auto mb-2.5 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-dark text-emerald-400 font-bold">
-            <Sparkles size={18} />
-          </div>
+          <img src="/logo.png" alt="Citizen Complaint Portal Logo" className="mx-auto mb-4 h-24 w-24 object-contain drop-shadow-md" />
           <h1 className="text-xl font-extrabold text-slate-900 tracking-tight">Citizen Registration</h1>
           <p className="text-xs font-medium text-slate-500">Create an account to file & upvote grievances</p>
         </div>

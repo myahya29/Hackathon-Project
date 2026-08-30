@@ -72,9 +72,7 @@ export default function CreateComplaintModal({ isOpen, onClose, onSuccess }) {
       <div className="bg-white rounded-2xl max-w-lg w-full p-5 shadow-lg border border-slate-200 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-brand-dark text-emerald-400 flex items-center justify-center font-bold">
-              <Sparkles size={16} />
-            </div>
+            <img src="/logo.png" alt="Logo" className="h-10 w-10 object-contain shrink-0 drop-shadow-xs" />
             <div>
               <h3 className="text-sm font-extrabold text-slate-900">File a New Grievance</h3>
               <p className="text-xs text-slate-400">Submit complaint to local municipal officers</p>

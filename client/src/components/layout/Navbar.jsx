@@ -25,11 +25,9 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2.5 text-base font-black text-slate-900" onClick={closeAll}>
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-white font-black text-lg shadow-sm">
-            CCP
-          </div>
-          <span className="tracking-tight">Citizen Redressal Portal</span>
+        <Link to="/" className="flex items-center gap-3 text-base font-black text-slate-900" onClick={closeAll}>
+          <img src="/logo.png" alt="Citizen Complaint Portal Logo" className="h-14 w-14 object-contain shrink-0 drop-shadow-md" />
+          <span className="tracking-tight text-lg font-extrabold text-slate-900">Citizen Complaint Portal</span>
         </Link>
 
         {/* Desktop links */}

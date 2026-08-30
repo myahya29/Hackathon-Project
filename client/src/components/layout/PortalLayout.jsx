@@ -102,13 +102,11 @@ export default function PortalLayout({
         }`}
       >
         <div>
-          <div className="h-14 flex items-center justify-between px-3.5 border-b border-slate-100">
+          <div className="h-16 flex items-center justify-between px-3.5 border-b border-slate-100">
             <Link to="/dashboard" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-brand-dark flex items-center justify-center text-emerald-400 font-bold shrink-0">
-                <Sparkles size={15} className="text-emerald-400 fill-emerald-400" />
-              </div>
+              <img src="/logo.png" alt="Citizen Complaint Portal Logo" className="h-12 w-12 object-contain shrink-0 drop-shadow-md" />
               <div className="flex flex-col">
-                <span className="font-extrabold text-slate-900 text-sm leading-tight">CivicPulse</span>
+                <span className="font-extrabold text-slate-900 text-sm leading-tight">Citizen</span>
                 <span className="text-[10px] text-emerald-600 font-bold uppercase tracking-wider">Complaint Portal</span>
               </div>
             </Link>
@@ -192,14 +190,12 @@ export default function PortalLayout({
         }`}
       >
         <div>
-          <div className="h-14 flex items-center justify-between px-3 border-b border-slate-100">
+          <div className="h-16 flex items-center justify-between px-3 border-b border-slate-100">
             <Link to="/dashboard" className="flex items-center gap-2.5 overflow-hidden">
-              <div className="w-7 h-7 rounded-lg bg-brand-dark flex items-center justify-center text-emerald-400 font-bold shrink-0">
-                <Sparkles size={15} className="text-emerald-400 fill-emerald-400" />
-              </div>
+              <img src="/logo.png" alt="Citizen Complaint Portal Logo" className="h-12 w-12 object-contain shrink-0 drop-shadow-md" />
               {!collapsed && (
                 <div className="flex flex-col">
-                  <span className="font-extrabold text-slate-900 text-sm leading-tight">CivicPulse</span>
+                  <span className="font-extrabold text-slate-900 text-sm leading-tight">Citizen</span>
                   <span className="text-[10px] text-emerald-600 font-bold uppercase tracking-wider">Complaint Portal</span>
                 </div>
               )}
