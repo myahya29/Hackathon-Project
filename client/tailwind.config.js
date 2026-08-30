@@ -9,6 +9,15 @@ export default {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
+      colors: {
+        brand: {
+          dark: '#043e35',
+          card: '#064e3b',
+          accent: '#10b981',
+          light: '#ecfdf5',
+          bg: '#f3f6f5',
+        },
+      },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
@@ -20,8 +29,8 @@ export default {
         },
       },
       animation: {
-        fadeIn: 'fadeIn 0.4s ease-out both',
-        slideUp: 'slideUp 0.45s ease-out both',
+        fadeIn: 'fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both',
+        slideUp: 'slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both',
       },
     },
   },

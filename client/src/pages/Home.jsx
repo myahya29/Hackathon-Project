@@ -1,70 +1,86 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, ShieldCheck, Zap, Users } from 'lucide-react'
+import { ArrowRight, ShieldCheck, Sparkles, MessageSquareText, SearchCheck, ThumbsUp } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 export default function Home() {
   const { isAuthenticated, user } = useAuth()
 
   return (
-    <div className="bg-gradient-to-b from-indigo-50 to-white">
-      <section className="mx-auto flex max-w-5xl flex-col items-center px-4 py-24 text-center sm:px-6 lg:px-8">
-        <span className="animate-fadeIn mb-5 inline-flex items-center gap-2 rounded-full bg-indigo-100 px-4 py-1.5 text-sm font-medium text-indigo-700">
-          <Zap size={14} /> Fast, secure authentication starter
+    <div className="bg-white min-h-screen flex flex-col justify-between font-sans">
+      {/* HERO SECTION */}
+      <section className="mx-auto flex max-w-4xl flex-col items-center px-4 py-16 text-center sm:px-6">
+        <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800 uppercase tracking-wide">
+          <Sparkles size={14} className="text-emerald-600" /> CivicPulse Redressal Portal
         </span>
-        <h1 className="animate-slideUp text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-          Ship your product,
-          <br className="hidden sm:block" /> not your auth flow.
+
+        <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 leading-tight">
+          Citizen Complaint & <br className="hidden sm:block" />
+          <span className="text-emerald-600">Grievance Redressal Portal</span>
         </h1>
-        <p className="animate-slideUp mt-6 max-w-2xl text-lg text-gray-600" style={{ animationDelay: '0.1s' }}>
-          Sign up, log in, and manage your account with a clean, secure dashboard —
-          built on a role-based access system that's ready for whatever you build next.
+
+        <p className="mt-4 max-w-xl text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
+          File municipal complaints across Roads, Sanitation, Water Supply, and Power Grid. Track real-time resolution status, upvote community issues, and provide direct feedback to local officers.
         </p>
 
-        <div className="animate-slideUp mt-10 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: '0.2s' }}>
+        {/* CTA BUTTONS */}
+        <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
           {isAuthenticated ? (
             <Link
               to="/dashboard"
-              className="flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-700"
+              className="flex items-center justify-center gap-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 px-5 py-2.5 text-xs font-bold text-white transition"
             >
-              Go to Dashboard <ArrowRight size={16} />
+              Open Redressal Dashboard <ArrowRight size={16} />
             </Link>
           ) : (
             <>
               <Link
                 to="/signup"
-                className="flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-700"
+                className="flex items-center justify-center gap-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 px-5 py-2.5 text-xs font-bold text-white transition"
               >
-                Get Started <ArrowRight size={16} />
+                Register Citizen Account <ArrowRight size={16} />
               </Link>
               <Link
                 to="/login"
-                className="flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-50"
+                className="flex items-center justify-center rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition"
               >
-                Login
+                Sign In
               </Link>
             </>
           )}
         </div>
 
         {isAuthenticated && (
-          <p className="mt-4 text-sm text-gray-500">
-            Signed in as <span className="font-medium text-gray-700">{user?.email}</span>
+          <p className="mt-3 text-xs text-slate-500 font-semibold">
+            Logged in as <span className="text-slate-900 font-bold">{user?.name}</span> ({user?.role === 'officer' ? 'Officer' : 'Citizen'})
           </p>
         )}
       </section>
 
-      <section className="mx-auto grid max-w-5xl gap-6 px-4 pb-24 sm:grid-cols-3 sm:px-6 lg:px-8">
+      {/* FEATURE CARDS */}
+      <section className="mx-auto grid max-w-4xl gap-4 px-4 pb-16 sm:grid-cols-3 sm:px-6">
         {[
-          { icon: ShieldCheck, title: 'Secure by default', text: 'Token-based auth with protected and role-gated routes.' },
-          { icon: Users, title: 'User management', text: 'Admins can view, promote, and manage every account.' },
-          { icon: Zap, title: 'Fast to extend', text: 'A clean foundation ready for your next feature.' },
+          {
+            icon: SearchCheck,
+            title: 'Real-time Duplicate Prevention',
+            text: 'Scans active complaints in real-time when filing to prevent duplicate submissions.',
+          },
+          {
+            icon: ThumbsUp,
+            title: 'Community Priority Upvoting',
+            text: 'Community upvotes dynamically elevate issue priority score for faster dispatch.',
+          },
+          {
+            icon: MessageSquareText,
+            title: 'Officer Remarks & Ratings',
+            text: 'Track official remarks, resolution status, and submit satisfaction feedback.',
+          },
         ].map(({ icon: Icon, title, text }) => (
-          <div key={title} className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
-              <Icon size={20} />
+          <div key={title} className="sq-card p-4 space-y-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-dark text-emerald-400 font-bold">
+              <Icon size={16} />
             </div>
-            <h3 className="font-semibold text-gray-900">{title}</h3>
-            <p className="mt-1 text-sm text-gray-500">{text}</p>
+            <h3 className="font-bold text-slate-900 text-sm">{title}</h3>
+            <p className="text-xs text-slate-500 font-medium leading-relaxed">{text}</p>
           </div>
         ))}
       </section>

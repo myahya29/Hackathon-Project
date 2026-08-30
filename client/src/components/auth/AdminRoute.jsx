@@ -8,20 +8,20 @@ export default function AdminRoute({ children }) {
   const { isAuthenticated, user, loading } = useAuth()
 
   useEffect(() => {
-    if (!loading && isAuthenticated && user?.role !== 'admin') {
-      toast.error('Access denied — admin only')
+    if (!loading && isAuthenticated && user?.role !== 'officer') {
+      toast.error('Access denied — officer portal only')
     }
   }, [loading, isAuthenticated, user])
 
   if (loading) {
-    return <Loader fullPage label="Checking your session…" />
+    return <Loader fullPage label="Checking your session..." />
   }
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />
   }
 
-  if (user?.role !== 'admin') {
+  if (user?.role !== 'officer') {
     return <Navigate to="/dashboard" replace />
   }
 

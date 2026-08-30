@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Mail, Lock, User, Eye, EyeOff, AlertCircle, CheckCircle2, UserPlus } from 'lucide-react'
+import { Mail, Lock, User, Eye, EyeOff, AlertCircle, CheckCircle2, Sparkles } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -19,8 +19,8 @@ export default function Signup() {
 
   const validate = () => {
     const next = {}
-    if (!form.name.trim()) next.name = 'Name is required'
-    if (!form.email.trim()) next.email = 'Email is required'
+    if (!form.name.trim()) next.name = 'Full name is required'
+    if (!form.email.trim()) next.email = 'Email address is required'
     else if (!emailRegex.test(form.email)) next.email = 'Enter a valid email address'
     if (!form.password) next.password = 'Password is required'
     else if (!passwordValid) next.password = 'Password must be at least 6 characters'
@@ -40,93 +40,96 @@ export default function Signup() {
     if (success) {
       navigate('/dashboard')
     } else {
-      setFormError('We could not create your account. Please check your details and try again.')
+      setFormError('Failed to create account. Email may already be registered.')
     }
   }
 
   return (
-    <div className="flex min-h-[calc(100vh-140px)] items-center justify-center bg-gray-50 px-4 py-12">
-      <div className="animate-slideUp w-full max-w-md rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
-        <div className="mb-6 text-center">
-          <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-600 text-white">
-            <UserPlus size={20} />
+    <div className="flex min-h-[calc(100vh-140px)] items-center justify-center bg-white px-4 py-10">
+      <div className="sq-card w-full max-w-sm p-6 border border-slate-200">
+        <div className="mb-5 text-center space-y-1">
+          <div className="mx-auto mb-2.5 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-dark text-emerald-400 font-bold">
+            <Sparkles size={18} />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Create your account</h1>
-          <p className="mt-1 text-sm text-gray-500">Start managing your workspace in minutes</p>
+          <h1 className="text-xl font-extrabold text-slate-900 tracking-tight">Citizen Registration</h1>
+          <p className="text-xs font-medium text-slate-500">Create an account to file & upvote grievances</p>
         </div>
 
         {formError && (
-          <div className="mb-5 flex items-start gap-2 rounded-lg bg-rose-50 px-4 py-3 text-sm text-rose-700">
-            <AlertCircle size={16} className="mt-0.5 shrink-0" />
+          <div className="mb-4 flex items-start gap-2 rounded-lg bg-rose-50 border border-rose-200 px-3 py-2.5 text-xs text-rose-700 font-semibold">
+            <AlertCircle size={15} className="mt-0.5 shrink-0" />
             <span>{formError}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} noValidate className="space-y-4">
+        <form onSubmit={handleSubmit} noValidate className="space-y-3.5">
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-gray-700">Full name</label>
+            <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-slate-700">Full Name</label>
             <div className="relative">
-              <User size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <User size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="Jane Doe"
-                className={`w-full rounded-lg border py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 ${errors.name
-                    ? 'border-rose-400 focus:border-rose-400 focus:ring-rose-200'
-                    : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
-                  }`}
+                placeholder="Jane Citizen"
+                className={`w-full rounded-lg bg-slate-50 border py-2 pl-9 pr-3 text-xs font-medium focus:bg-white focus:outline-none focus:ring-2 ${
+                  errors.name
+                    ? 'border-rose-400 focus:ring-rose-200'
+                    : 'border-slate-200 focus:border-emerald-500 focus:ring-emerald-500/20'
+                }`}
               />
             </div>
-            {errors.name && <p className="mt-1 text-xs text-rose-600">{errors.name}</p>}
+            {errors.name && <p className="mt-1 text-xs text-rose-600 font-semibold">{errors.name}</p>}
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-gray-700">Email</label>
+            <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-slate-700">Email Address</label>
             <div className="relative">
-              <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <Mail size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="you@example.com"
-                className={`w-full rounded-lg border py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 ${errors.email
-                    ? 'border-rose-400 focus:border-rose-400 focus:ring-rose-200'
-                    : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
-                  }`}
+                className={`w-full rounded-lg bg-slate-50 border py-2 pl-9 pr-3 text-xs font-medium focus:bg-white focus:outline-none focus:ring-2 ${
+                  errors.email
+                    ? 'border-rose-400 focus:ring-rose-200'
+                    : 'border-slate-200 focus:border-emerald-500 focus:ring-emerald-500/20'
+                }`}
               />
             </div>
-            {errors.email && <p className="mt-1 text-xs text-rose-600">{errors.email}</p>}
+            {errors.email && <p className="mt-1 text-xs text-rose-600 font-semibold">{errors.email}</p>}
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-gray-700">Password</label>
+            <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-slate-700">Password</label>
             <div className="relative">
-              <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <Lock size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type={showPassword ? 'text' : 'password'}
                 value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
                 placeholder="••••••••"
-                className={`w-full rounded-lg border py-2.5 pl-10 pr-10 text-sm focus:outline-none focus:ring-2 ${errors.password
-                    ? 'border-rose-400 focus:border-rose-400 focus:ring-rose-200'
-                    : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
-                  }`}
+                className={`w-full rounded-lg bg-slate-50 border py-2 pl-9 pr-9 text-xs font-medium focus:bg-white focus:outline-none focus:ring-2 ${
+                  errors.password
+                    ? 'border-rose-400 focus:ring-rose-200'
+                    : 'border-slate-200 focus:border-emerald-500 focus:ring-emerald-500/20'
+                }`}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((v) => !v)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 tabIndex={-1}
               >
-                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
               </button>
             </div>
             {errors.password ? (
-              <p className="mt-1 text-xs text-rose-600">{errors.password}</p>
+              <p className="mt-1 text-xs text-rose-600 font-semibold">{errors.password}</p>
             ) : (
               form.password.length > 0 && (
-                <p className={`mt-1 flex items-center gap-1 text-xs ${passwordValid ? 'text-emerald-600' : 'text-gray-400'}`}>
+                <p className={`mt-1 flex items-center gap-1 text-xs font-semibold ${passwordValid ? 'text-emerald-600' : 'text-slate-400'}`}>
                   {passwordValid && <CheckCircle2 size={12} />}
                   At least 6 characters
                 </p>
@@ -137,16 +140,16 @@ export default function Signup() {
           <button
             type="submit"
             disabled={loading}
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 py-2.5 text-xs font-bold text-white transition hover:bg-emerald-700 disabled:opacity-60"
           >
-            {loading && <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />}
-            {loading ? 'Creating account…' : 'Create account'}
+            {loading && <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white border-t-transparent" />}
+            {loading ? 'Creating Account...' : 'Register Citizen Account'}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-gray-500">
-          Already have an account?{' '}
-          <Link to="/login" className="font-semibold text-indigo-600 hover:text-indigo-700">
+        <p className="mt-5 text-center text-xs text-slate-500 font-medium">
+          Already registered?{' '}
+          <Link to="/login" className="font-bold text-emerald-600 hover:text-emerald-700">
             Log in
           </Link>
         </p>

@@ -7,20 +7,15 @@ import Signup from './pages/Signup'
 import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
-import AdminLayout from './components/layout/AdminLayout'
-import AdminOverview from './pages/admin/AdminOverview'
-import AdminUsers from './pages/admin/AdminUsers'
-import AdminSettings from './pages/admin/AdminSettings'
 import ProtectedRoute from './components/auth/ProtectedRoute'
-import AdminRoute from './components/auth/AdminRoute'
 
 export default function App() {
   const location = useLocation()
-  const isAdminRoute = location.pathname.startsWith('/admin')
+  const isDashboardRoute = location.pathname.startsWith('/dashboard')
 
   return (
-    <div className="flex min-h-screen flex-col">
-      {!isAdminRoute && <Navbar />}
+    <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
+      {!isDashboardRoute && <Navbar />}
 
       <main className="flex-1">
         <Routes>
@@ -45,24 +40,11 @@ export default function App() {
             }
           />
 
-          <Route
-            path="/admin"
-            element={
-              <AdminRoute>
-                <AdminLayout />
-              </AdminRoute>
-            }
-          >
-            <Route index element={<AdminOverview />} />
-            <Route path="users" element={<AdminUsers />} />
-            <Route path="settings" element={<AdminSettings />} />
-          </Route>
-
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
-      {!isAdminRoute && <Footer />}
+      {!isDashboardRoute && <Footer />}
     </div>
   )
 }

@@ -10,4 +10,7 @@ export const authService = {
   me: () => api.get('/auth/me').then((res) => res.data),
 
   logout: () => api.post('/auth/logout').then((res) => res.data),
+
+  updatePassword: (currentPassword, newPassword) =>
+    api.put('/auth/update-password', { currentPassword, newPassword }).then((res) => res.data),
 }
