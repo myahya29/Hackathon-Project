@@ -36,9 +36,19 @@ Municipal officers receive a dedicated dashboard equipped with **AI-generated da
   - 🟠 **High Priority** ($\text{Score } 16 - 30$)
   - 🔴 **Critical Priority** ($\text{Score} > 30$)
 
-### 🤖 AI Daily Operations Briefing (Google Gemini API)
-- Generates a concise 3–4 sentence plain-English operational summary card at the top of the Officer Dashboard.
-- Evaluates live metrics: total complaints, new today, pending dispatches, in-progress cases, resolved count, top issue categories, and hotspot localities.
+### 🤖 AI Daily Operations Briefing (Google Gemini API Integration)
+- **Deep AI Analysis**: Integrated with **Google Gemini API** (`gemini-1.5-flash`) via `GEMINI_API_KEY`.
+- **How It Works**:
+  1. When an officer logs in, the backend (`POST /api/ai/officer-summary`) fetches all complaint records from MongoDB.
+  2. The system computes real-time operational statistics:
+     - Total complaint volume & new complaints filed today.
+     - Active status counts (`Pending`, `In Progress`, `Resolved`).
+     - Number of **Critical Priority** cases (score > 30).
+     - Top grievance category (e.g. *Roads & Infrastructure*) and primary hotspot locality (e.g. *Sector 4*).
+  3. These computed stats are passed as structured context to the Gemini AI model with a specialized government operations prompt.
+  4. Gemini generates a **human-friendly, 3 to 4 sentence natural-language briefing card** (e.g., *"Today: 12 new grievance reports filed. Currently 5 complaints require pending officer dispatch. 3 complaints reached Critical priority based on high community upvotes. Top grievance category is 'Roads' with primary hotspot in 'Sector 4'."*).
+  5. Includes a **Refresh AI Briefing** button on the UI for real-time situational awareness.
+  6. Equipped with an **Intelligent Fallback Engine** ensuring seamless operations even if Gemini API keys are omitted or rate-limited.
 
 ### 🛡️ Officer Management & Status Controls
 - **Status Updates**: Change complaint status (`Pending` ➔ `In Progress` ➔ `Resolved`).
@@ -49,6 +59,38 @@ Municipal officers receive a dedicated dashboard equipped with **AI-generated da
 
 ### ⭐ Citizen Resolution Feedback
 - Once an issue is marked **Resolved**, the filing citizen is prompted to rate redressal satisfaction (1–5 Stars) and leave feedback notes.
+
+---
+
+## 🤖 Deep Dive: Google Gemini AI Integration Architecture
+
+Here is the exact technical flow of how Google Gemini AI powers the Officer Dashboard:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Officer as Municipal Officer
+    participant FE as React Dashboard
+    participant BE as Express Server (/api/ai/officer-summary)
+    participant DB as MongoDB Atlas
+    participant Gemini as Google Gemini AI API
+
+    Officer->>FE: Opens Officer Dashboard
+    FE->>BE: POST /api/ai/officer-summary (Bearer JWT)
+    BE->>DB: Query Complaint.find()
+    DB-->>BE: Returns all complaint documents
+    BE->>BE: Compute stats (Total, NewToday, Critical, Hotspots, Categories)
+    
+    alt GEMINI_API_KEY Configured
+        BE->>Gemini: POST generateContent (Prompt + Stats JSON)
+        Gemini-->>BE: Returns 3-4 sentence human-friendly briefing
+    else API Key Missing / Fallback
+        BE->>BE: Generate Intelligent Rule-Based Operational Summary
+    end
+
+    BE-->>FE: Returns { summary, stats }
+    FE-->>Officer: Renders Highlighted AI Daily Briefing Card
+```
 
 ---
 
