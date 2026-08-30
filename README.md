@@ -52,13 +52,27 @@ Municipal officers receive a dedicated dashboard equipped with **AI-generated da
 
 ---
 
-## 🚀 Extra & Future Features (Roadmap)
+## 🌟 Implemented Advanced Extra Features
 
-Here are the high-impact extra features designed for future production releases:
+The application goes far beyond standard CRUD portals by implementing **5 major high-impact extra features**:
+
+| Implemented Extra Feature | Tech / API Used | Value Provided | Status |
+| :--- | :--- | :--- | :---: |
+| 🤖 **AI Daily Operations Briefing** | **Google Gemini AI API** (`gemini-1.5-flash`) | Generates a 3–4 sentence plain-English operational summary for municipal officers by analyzing live MongoDB complaint metrics & hotspots. | **✅ Built & Live** |
+| 🔍 **Real-Time Duplicate Detection** | MongoDB Locality Query Engine | Automatically scans active complaints in the same category & area while typing, nudging citizens to upvote existing issues. | **✅ Built & Live** |
+| 📈 **Dynamic Priority Scoring** | Custom Algorithmic Engine | Auto-computes urgency score: $\text{Score} = (\text{Upvotes} \times 2) + \text{DaysSinceCreated}$, mapping to `Low`, `Medium`, `High`, and `Critical` badges. | **✅ Built & Live** |
+| 📊 **One-Click CSV Data Export** | `json2csv` Parser & Streamer | Streams filtered complaint records into downloadable `.csv` spreadsheets (`complaints_export_YYYY-MM-DD.csv`) for government audits. | **✅ Built & Live** |
+| ⭐ **Citizen Satisfaction Rating** | Mongoose Feedback Schema | Prompts citizens upon resolution to rate redressal satisfaction (1–5 Stars) and submit feedback notes. | **✅ Built & Live** |
+
+---
+
+## 🚀 Future Roadmap Features
+
+Here are the planned extensions for upcoming production iterations:
 
 | Feature | Category | Description |
 | :--- | :--- | :--- |
-| 📸 **Cloudinary Direct File Upload** | Core Extra | Direct image file uploads from device camera/gallery via Multer & Cloudinary CDN. |
+| 📸 **Cloudinary Direct File Upload** | File Upload | Direct image uploads from device camera/gallery via Multer & Cloudinary CDN. |
 | 🗺️ **GIS Locality Heatmap** | Mapping | Interactive Leaflet / Google Maps view showing real-time complaint pins and urgency heatmaps. |
 | 🔔 **SMS & Push Notifications** | Real-Time | Twilio SMS and Web Push alerts notifying citizens whenever complaint status updates or officer adds remarks. |
 | 📊 **Chart.js Executive Analytics** | Analytics | Visual analytics dashboard showing resolution SLA trends, category breakdowns, and officer performance metrics. |
@@ -136,7 +150,7 @@ GEMINI_API_KEY=your_google_gemini_api_key
 Create a `.env` file inside the `client/` directory:
 
 ```env
-VITE_API_BASE_URL=http://localhost:5000/api
+VITE_API_URL=https://hackathon-project-sepia-iota.vercel.app/api
 ```
 
 ### 2. Install Dependencies
